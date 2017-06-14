@@ -27,10 +27,9 @@ void mod_cli_load(core_module_t *module) {
 }
 
 void mod_cli_destroy(core_module_t *module) {
-  /* apr_status_t rv; */
-  /* apr_pool_t *pool; */
-  /* pool = module->pool; */
-
+  apr_status_t rv;
+  apr_pool_t *pool;
+  pool = module->pool;
   apr_queue_term(module->mqueue->queue);
   
 }
@@ -74,7 +73,6 @@ static void * APR_THREAD_FUNC cli_core_msg_consumer(apr_thread_t *thd, core_modu
       printf("mod_cli: the queue is empty\n");
     
   }
-  apr_pool_destroy(module->pool);
 
   return NULL;
 }

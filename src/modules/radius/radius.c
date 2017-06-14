@@ -1,4 +1,5 @@
 #include <core.h>
+#include <core_event.h>
 #include <radius.h>
 
 void mod_radius_load(core_module_t *module) {
@@ -27,12 +28,10 @@ void mod_radius_load(core_module_t *module) {
 }
 
 void mod_radius_destroy(core_module_t *module) {
-  /* apr_status_t rv; */
-  /* apr_pool_t *pool; */
-  /* pool = module->pool; */
-
+  apr_status_t rv;
+  apr_pool_t *pool;
+  pool = module->pool;
   apr_queue_term(module->mqueue->queue);
-  
 }
 
 static void * APR_THREAD_FUNC radius_core_msg_consumer(apr_thread_t *thd, core_module_t *module) {
@@ -46,15 +45,9 @@ static void * APR_THREAD_FUNC radius_core_msg_consumer(apr_thread_t *thd, core_m
   if (rv == APR_SUCCESS) // on a successful pop
     printf("mod_radius: successfully created modules input message queue\n");
 
-  
-  int *test_int = core_palloc(module->pool, sizeof(int*));
-  *test_int = 342;
-  void *data = test_int;
-  rv = apr_queue_push(module->mqueue->queue, data);
-  
 
   while (1) {
-    printf("mod_radius: entering thread\n");
+    //printf("mod_radius: entering thread\n");
 
     rv = apr_queue_pop(module->mqueue->queue, &v);
     
@@ -65,11 +58,13 @@ static void * APR_THREAD_FUNC radius_core_msg_consumer(apr_thread_t *thd, core_m
       printf("mod_radius: the queue has been terminated\n");
       break;
     }
-    
+
+    core_event_t* event = (core_event_t *) v;
     if (rv == APR_SUCCESS) { // on a successful pop
-      printf("mod_radius: the pop was successful\n");
-      int *k = (int *)v;
-      printf("mod_radius: poping %d\n", *k);
+      int * data = (int *) (event->data);
+      //printf("%d\n", *data);
+      apr_pool_destroy(event->pool);
+
       continue;
     }
     
@@ -77,7 +72,6 @@ static void * APR_THREAD_FUNC radius_core_msg_consumer(apr_thread_t *thd, core_m
       printf("mod_radius: the queue is empty\n");
     
   }
-  apr_pool_destroy(module->pool);
 
   return NULL;
 }
