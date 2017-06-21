@@ -15,7 +15,7 @@ core_module_t * core_load_module(apr_pool_t *core_pool, const char * mod_name, c
   sprintf(destroy_func_name, "%s_destroy", mod_name);
 
   // create and initialize modules handle from core's memory pool
-  mod = core_palloc(core_pool, sizeof(core_module_t *));
+  mod = core_palloc(core_pool, sizeof(core_module_t));
   
   /////// Load modules shared-library
   if ((rv = apr_dso_load(&(mod->dso_h), full_path, core_pool)) != APR_SUCCESS) {
@@ -33,7 +33,6 @@ core_module_t * core_load_module(apr_pool_t *core_pool, const char * mod_name, c
     goto error;
   }
   ///////
-
   
   /////// Allocate and initialize modules memory pool
   // create modules memory pool

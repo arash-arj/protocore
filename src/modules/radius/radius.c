@@ -10,7 +10,7 @@ void mod_radius_load(core_module_t *module) {
   
   printf("mod_radius: loading module\n");
 
-  module->context = (core_context_t *) core_palloc(pool, sizeof(radius_context_t *));
+  module->context = (core_context_t *) core_palloc(pool, sizeof(radius_context_t));
   radius_context_t *context = (radius_context_t *) module->context;
 
   rv = apr_thread_create(
@@ -29,9 +29,10 @@ void mod_radius_load(core_module_t *module) {
 
 void mod_radius_destroy(core_module_t *module) {
   apr_status_t rv;
-  apr_pool_t *pool;
-  pool = module->pool;
-  apr_queue_term(module->mqueue->queue);
+  rv = apr_queue_term(module->mqueue->queue);
+  if (rv == APR_SUCCESS) // on success 
+    printf("mod_radius: successfully destroyed the module\n");
+
 }
 
 static void * APR_THREAD_FUNC radius_core_msg_consumer(apr_thread_t *thd, core_module_t *module) {
@@ -39,7 +40,7 @@ static void * APR_THREAD_FUNC radius_core_msg_consumer(apr_thread_t *thd, core_m
   apr_status_t rv;
   void *v = NULL;
 
-  module->mqueue = core_palloc(module->pool, sizeof(core_mqueue_t *));
+  module->mqueue = core_palloc(module->pool, sizeof(core_mqueue_t));
   rv = core_queue_create(&(module->mqueue->queue), QUEUE_SIZE, module->pool);
 
   if (rv == APR_SUCCESS) // on a successful pop
@@ -61,7 +62,7 @@ static void * APR_THREAD_FUNC radius_core_msg_consumer(apr_thread_t *thd, core_m
 
     core_event_t* event = (core_event_t *) v;
     if (rv == APR_SUCCESS) { // on a successful pop
-      int * data = (int *) (event->data);
+      /* int * data = (int *) (event->data); */
       //printf("%d\n", *data);
       apr_pool_destroy(event->pool);
 

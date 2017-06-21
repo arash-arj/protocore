@@ -1,3 +1,4 @@
+#include <time.h>
 #include <core.h>
 #include <core_mqueue.h>
 #include <core_event.h>
@@ -27,7 +28,7 @@ int main()
   ////////////////////////////////
   /////// Load Modules
   ////////////////////////////////
-  char path_prefix[] = "/root/dev/AVA-ProtoCore/bin/";
+  char path_prefix[] = "/root/dev/protocore/bin/";
   core_module_t *mod_radius = core_load_module(core_pool, "mod_radius", path_prefix);
   core_module_t *mod_cli = core_load_module(core_pool, "mod_cli", path_prefix);
   ////////////////////////////////
@@ -43,18 +44,27 @@ int main()
 
   core_event_t * my_event;
   int *test_int;
-  test_int = core_palloc(mod_cli->pool, sizeof(int*));
+  test_int = core_palloc(mod_cli->pool, sizeof(int));
   *test_int = 5464;
 
   //apr_sleep(1000000); /* sleep 100 seconds */
 
   int i = 0;
-  printf("Successfully published the event\n");
-  for(i = 0; i < 50000000; i++) {
+  printf("Test: Starting event test\n");
+
+  struct timespec tstart={0,0}, tend={0,0};
+  clock_gettime(CLOCK_MONOTONIC, &tstart);
+
+  for(i = 0; i < 100000000; i++) {
     my_event = core_event_create("radius_request", (void *) test_int, sizeof(int), 0);
-    core_event_publish(ev_server, my_event);
+    core_event_publish(ev_server, my_event, 0);
   }
-  printf("Successfully published the event\n");
+
+  clock_gettime(CLOCK_MONOTONIC, &tend);
+  double time_diff = ((double)tend.tv_sec + 1.0e-9*tend.tv_nsec) -
+    ((double)tstart.tv_sec + 1.0e-9*tstart.tv_nsec);
+  printf("Test: Event test ended with %d events published in %.5f seconds (rate of %f kilo events/sec.)\n", i, time_diff, i*0.001/time_diff);
+  
   ////////////////////////////////
   /////// Testing
   ////////////////////////////////
@@ -66,6 +76,8 @@ int main()
   
   //apr_sleep(10000000); /* sleep 100 seconds */
 
+  printf("Here i am\n");
+  apr_sleep(5000000); /* sleep 100 seconds */
   ////////////////////////////////
   /////// Destroy Modules
   ////////////////////////////////
@@ -77,7 +89,6 @@ int main()
 
 
   //apr_sleep(300000); /* sleep 100 seconds */
-
   ////////////////////////////////
   /////// Kill the whole beast
   ////////////////////////////////

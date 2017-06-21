@@ -9,7 +9,7 @@ void mod_cli_load(core_module_t *module) {
   
   printf("mod_cli: loading module\n");
   
-  module->context = (core_context_t *) core_palloc(pool, sizeof(cli_context_t *));
+  module->context = (core_context_t *) core_palloc(pool, sizeof(cli_context_t));
   cli_context_t *context = (cli_context_t *) module->context;
 
   rv = apr_thread_create(
@@ -28,9 +28,9 @@ void mod_cli_load(core_module_t *module) {
 
 void mod_cli_destroy(core_module_t *module) {
   apr_status_t rv;
-  apr_pool_t *pool;
-  pool = module->pool;
-  apr_queue_term(module->mqueue->queue);
+  rv = apr_queue_term(module->mqueue->queue);
+  if (rv == APR_SUCCESS) // on success 
+    printf("mod_cli: successfully destroyed the module\n");
   
 }
 
@@ -40,7 +40,7 @@ static void * APR_THREAD_FUNC cli_core_msg_consumer(apr_thread_t *thd, core_modu
   void *v = NULL;
 
   
-  module->mqueue = core_palloc(module->pool, sizeof(core_mqueue_t *));
+  module->mqueue = core_palloc(module->pool, sizeof(core_mqueue_t));
 
   rv = core_queue_create(&(module->mqueue->queue), QUEUE_SIZE, module->pool);
 
