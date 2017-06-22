@@ -119,34 +119,31 @@ static void * APR_THREAD_FUNC core_msg_dispatcher_worker(apr_thread_t *thd, core
       }
 
       core_event_t* event = (core_event_t *) v;
-      if (rv == APR_SUCCESS) { // on a successful pop
-	/* int * data = (int *) (event->data); */
-	//printf("got an event with priority %d: event name: %s \n", i, event->event_name);
-	core_mqueue_t *queue = NULL;
-	apr_hash_t *subs_hash;
-	core_event_t* new_event = NULL;
+      /* int * data = (int *) (event->data); */
+      //printf("got an event with priority %d: event name: %s \n", i, event->event_name);
+      core_mqueue_t *queue = NULL;
+      apr_hash_t *subs_hash;
+      core_event_t* new_event = NULL;
 
-	subs_hash = ev_server->subscriptions;
+      subs_hash = ev_server->subscriptions;
 
-	// iterate over queue subscribed for this event (currently one person can subscribe)
-	queue = (core_mqueue_t *) apr_hash_get(subs_hash,
-					       (void *) event->event_name,
-					       APR_HASH_KEY_STRING
-					       );
+      // iterate over queue subscribed for this event (currently one person can subscribe)
+      queue = (core_mqueue_t *) apr_hash_get(subs_hash,
+					     (void *) event->event_name,
+					     APR_HASH_KEY_STRING
+					     );
 
-	if(queue) {
-	  // copy event for each subscriber
-	  new_event = (void *) core_event_dup(event);
-	  rv = apr_queue_push(queue->queue, new_event);
-	  if (rv == APR_SUCCESS) { // on success
-	    //printf("core: message successfully published\n");
-	  }
+      if(queue) {
+	// copy event for each subscriber
+	new_event = (void *) core_event_dup(event);
+	rv = apr_queue_push(queue->queue, new_event);
+	if (rv == APR_SUCCESS) { // on success
+	  //printf("core: message successfully published\n");
 	}
-	
-	apr_pool_destroy(event->pool);
-
-	continue;
       }
+	
+      apr_pool_destroy(event->pool);
+
       
       break;
     }
