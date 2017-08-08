@@ -129,7 +129,7 @@ static void * APR_THREAD_FUNC core_msg_dispatcher_worker(apr_thread_t *thd, core
 
       // iterate over queue subscribed for this event (currently one person can subscribe)
       queue = (core_mqueue_t *) apr_hash_get(subs_hash,
-					     (void *) event->event_name,
+					     (void *) event->name,
 					     APR_HASH_KEY_STRING
 					     );
 
@@ -142,7 +142,7 @@ static void * APR_THREAD_FUNC core_msg_dispatcher_worker(apr_thread_t *thd, core
 	}
       }
 	
-      apr_pool_destroy(event->pool);
+      core_event_destroy(event);
 
       
       break;
@@ -197,8 +197,8 @@ void core_event_publish(core_event_server_t *event_server, core_event_t* event, 
 
   /* copy the event and destroy the given event */
   new_event = (core_event_t *) core_event_dup(event);
-  sem_data = core_palloc(new_event->pool, sizeof (char));
-  apr_pool_destroy(event->pool);
+  sem_data = (char *) new_event->name;
+  core_event_destroy(event);
 
   /* check the priority and publish to the relevent queue */
   if(priority >= NUM_PRIORITY_LEVELS) {
@@ -213,42 +213,164 @@ void core_event_publish(core_event_server_t *event_server, core_event_t* event, 
 }
   
 
+////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
 
+core_event_t * core_event_create(const char *event_name, int event_type, char* event_body) {
+  core_event_t *event = NULL;
 
-core_event_t * core_event_create(const char *event_name, void* data, int data_len, int type) {
-  apr_status_t rv;
-  core_event_t *event;
+  event = (core_event_t *) malloc(sizeof(core_event_t));
+  
+  if(!event) {
+    return NULL;
+  }
 
-  // Allocate and initialize events memory pool
-  // create event memory pool
-  apr_pool_t *pool;
-  rv = core_pool_create(&pool, NULL);
-  if(rv != APR_SUCCESS) {
-  /* printf("Not successful\n"); */
-  return NULL;
-}
-  else {
-  /* printf("Successfully created events memory pool\n"); */
-}
+  
+  if(event_name) {
+    event->name = strdup(event_name);
+  }
 
-  event = core_palloc(pool, sizeof (core_event_t));
-  event->pool = pool;
-  event->event_name = apr_pstrdup(pool, event_name);
-  event->data = apr_pmemdup(pool, data, data_len);
-  event->data_len = data_len;
-  event->type = type;
+  if(event_body) {
+    event->body = strdup(event_body);
+  }
 
+  event->type = event_type;
+  event->first_header = NULL;
+  event->last_header = NULL;
+  
   return event;
 }
 
 
-  core_event_t * core_event_dup(core_event_t *event) {
-  return core_event_create(event->event_name, event->data, event->data_len, event->type);
+core_event_t * core_event_dup(core_event_t *event) {
+  core_event_t *new_event = core_event_create(event->name, event->type, event->body);
+  core_event_header_t *fh = NULL;
+  core_event_header_t *lh = NULL;
+  
+  core_event_header_list_dup(event->first_header, &fh, &lh);
+  new_event->first_header = fh;
+  new_event->last_header = lh;
+  return new_event;
 }
 
 
-  void core_event_destroy(core_event_t *event) {
-  apr_pool_destroy(event->pool);
+void core_event_destroy(core_event_t *event) {
+
+  core_event_header_list_destroy(event->first_header);
+  event->first_header = NULL;
+  event->last_header = NULL;
+
+  if(event->name) {
+    free(event->name);
+    event->name = 0;
+  }
+
+  if(event->body) {
+    free(event->body);
+    event->body = 0;
+  }
+
+  free(event);
+
 }
 
 
+core_event_header_t * core_event_header_create(const char *header_name, const char *header_value) {
+  core_event_header_t *header = NULL;
+
+  header = (core_event_header_t *) malloc(sizeof(core_event_header_t));
+  if(!header) {
+    return NULL;
+  }
+
+  if(header_name) {
+    header->name = strdup(header_name);
+  }
+  if(header_value) {
+    header->value = strdup(header_value);
+  }
+  header->next = NULL;
+  return header;
+}
+
+
+core_event_header_t * core_event_header_add(core_event_t *event, const char *header_name, const char *header_value) {
+  core_event_header_t *header = NULL;
+
+  if(!event || !header_name || !header_value) {
+    return NULL;
+  }
+
+  header = core_event_header_create(header_name, header_value);
+
+  if(!header) {
+    return NULL;
+  }
+
+  /* no first header */
+  if(!(event->first_header)) { 
+    event->first_header = header;
+    event->last_header = header;
+    return header;
+  }
+
+  if(!(event->last_header)) {
+    /* this is a fault! possible memory leak */
+  }
+
+  if(event->last_header && event->last_header->next) {
+    /* this is a fault! possible memory leak */
+  }
+  
+  /* we should assert that here, event->last_header && !(event->last_header->next) */
+
+  event->last_header->next = header;
+  event->last_header = header;
+
+  return header;
+}
+
+
+core_event_header_t * core_event_header_dup(core_event_header_t *header) {
+  core_event_header_t *new_header = NULL;
+  new_header = core_event_header_create(header->name, header->value);
+  return new_header;
+}
+
+
+core_event_header_t* core_event_header_destroy(core_event_header_t *header) {
+  core_event_header_t *next = header->next;
+  free(header->name);
+  free(header->value);
+  free(header);
+  return next;
+}
+
+
+void core_event_header_list_dup(core_event_header_t *header, core_event_header_t **first_header, core_event_header_t **last_header) {
+  core_event_header_t *head = NULL;
+  core_event_header_t *new = NULL;
+  core_event_header_t *prev = NULL;
+
+  /* iterate over given header list */
+  for(head = header; head; head = head->next) {
+    new = core_event_header_dup(head);
+    if(prev) {
+      prev->next = new;
+    }
+    prev = new;
+    if(!(*first_header)) {
+        *first_header = new;
+    }
+  }
+  *last_header = prev;
+}
+
+
+void core_event_header_list_destroy(core_event_header_t *header) {
+  core_event_header_t *next = NULL;
+  for(next = header;
+      next != NULL;
+      next = core_event_header_destroy(next)
+      );
+}

@@ -1,4 +1,3 @@
-
 #include <core.h>
 
 
@@ -19,6 +18,9 @@ core_module_t * core_load_module(apr_pool_t *core_pool, const char * mod_name, c
   
   /////// Load modules shared-library
   if ((rv = apr_dso_load(&(mod->dso_h), full_path, core_pool)) != APR_SUCCESS) {
+    char buf[256];
+    apr_strerror(rv, buf, sizeof(buf));
+    puts(buf);  /* show the error description */
     printf("An error occured loading the module...'%s'\n", full_path);
     goto error;
   }

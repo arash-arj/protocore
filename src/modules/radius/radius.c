@@ -62,9 +62,8 @@ static void * APR_THREAD_FUNC radius_core_msg_consumer(apr_thread_t *thd, core_m
 
     core_event_t* event = (core_event_t *) v;
     if (rv == APR_SUCCESS) { // on a successful pop
-      /* int * data = (int *) (event->data); */
-      //printf("%d\n", *data);
-      apr_pool_destroy(event->pool);
+      printf("> name %s, value %s\n", event->first_header->name, event->first_header->value);
+      core_event_destroy(event);
 
       continue;
     }

@@ -1,6 +1,7 @@
 #include <core.h>
 #include <cli.h>
 
+
 void mod_cli_load(core_module_t *module) {
   apr_status_t rv;
   apr_pool_t *pool;
@@ -39,11 +40,8 @@ static void * APR_THREAD_FUNC cli_core_msg_consumer(apr_thread_t *thd, core_modu
   apr_status_t rv;
   void *v = NULL;
 
-  
   module->mqueue = core_palloc(module->pool, sizeof(core_mqueue_t));
-
   rv = core_queue_create(&(module->mqueue->queue), QUEUE_SIZE, module->pool);
-
 
   if (rv == APR_SUCCESS) // on a successful pop
     printf("mod_cli: successfully created modules input message queue\n");
