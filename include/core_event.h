@@ -71,6 +71,7 @@ void core_event_destroy(core_event_t *event);
 
 core_event_header_t * core_event_add_header(core_event_t *event, const char *header_name, const char *header_value);
 core_event_header_t * core_event_header_create(const char *header_name, const char *header_value);
+core_event_header_t * core_event_get_header_value(core_event_t *event, const char *header_name);
 core_event_header_t * core_event_header_dup(core_event_header_t *header);
 core_event_header_t * core_event_header_destroy(core_event_header_t *header);
 void core_event_header_list_destroy(core_event_header_t *header);
