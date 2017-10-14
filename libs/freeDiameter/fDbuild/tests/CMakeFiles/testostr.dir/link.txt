@@ -1,0 +1,1 @@
+/usr/bin/cc     CMakeFiles/testostr.dir/testostr.c.o  -o testostr -Wl,-rpath,/root/dev/freeDiameter/fDbuild/libfdcore:/root/dev/freeDiameter/fDbuild/libfdproto -rdynamic ../libfdcore/libfdcore.so.1.2.0 -lgnutls -lgcrypt ../libfdproto/libfdproto.so.1.2.0 -lpthread 
