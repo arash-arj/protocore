@@ -10,4 +10,3 @@
 
 #define core_palloc            apr_palloc
 #define core_pool_create       apr_pool_create
-

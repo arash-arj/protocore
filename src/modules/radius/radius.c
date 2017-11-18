@@ -29,10 +29,16 @@ void mod_radius_load(core_module_t *module) {
 
 void mod_radius_destroy(core_module_t *module) {
   apr_status_t rv;
+  radius_context_t *context;
   rv = apr_queue_term(module->mqueue->queue);
   if (rv == APR_SUCCESS) // on success 
     printf("mod_radius: successfully destroyed the module\n");
 
+  context = (radius_context_t *) module->context;
+  rv = apr_thread_join(&rv, context->consumer_thread);
+  if (rv == APR_SUCCESS) // on success 
+    printf("mod_radius: successfully destroyed the message consumer thread\n");
+  
 }
 
 static void * APR_THREAD_FUNC radius_core_msg_consumer(apr_thread_t *thd, core_module_t *module) {
@@ -62,7 +68,7 @@ static void * APR_THREAD_FUNC radius_core_msg_consumer(apr_thread_t *thd, core_m
 
     core_event_t* event = (core_event_t *) v;
     if (rv == APR_SUCCESS) { // on a successful pop
-      printf("> name %s, value %s\n", event->first_header->name, event->first_header->value);
+      /* printf("> name %s, value %s\n", event->first_header->name, event->first_header->value); */
       core_event_destroy(event);
 
       continue;

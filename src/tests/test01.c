@@ -28,9 +28,9 @@ int main()
   ////////////////////////////////
   /////// Load Modules
   ////////////////////////////////
-  char path_prefix[] = "/root/dev/protocore/bin/";
+  char path_prefix[] = "/root/dev/protocore/bin";
   core_module_t *mod_radius = core_load_module(core_pool, "mod_radius", path_prefix);
-  core_module_t *mod_cli = core_load_module(core_pool, "mod_cli", path_prefix);
+  /* core_module_t *mod_cli = core_load_module(core_pool, "mod_cli", path_prefix); */
   ////////////////////////////////
 
 
@@ -43,9 +43,6 @@ int main()
   ////////////////////////////////
 
   core_event_t * my_event;
-  int *test_int;
-  test_int = core_palloc(mod_cli->pool, sizeof(int));
-  *test_int = 5464;
 
   //apr_sleep(1000000); /* sleep 100 seconds */
 
@@ -74,23 +71,15 @@ int main()
   ////////////////////////////////
   /////// Testing
   ////////////////////////////////
-  /* int *test_int = core_palloc(mod_cli->pool, sizeof(int*)); */
-  /* *test_int = 5464; */
-  /* void *data = test_int; */
-  /* rv = apr_queue_push(mod_cli->mqueue->queue, data); */
-  ////////////////////////////////
-  
-  //apr_sleep(10000000); /* sleep 100 seconds */
 
   printf("Here i am\n");
-  apr_sleep(5000000); /* sleep 100 seconds */
+  /* apr_sleep(5000000); /\* sleep 100 seconds *\/ */
   ////////////////////////////////
   /////// Destroy Modules
   ////////////////////////////////
   printf("destroying mod_radius\n");
   core_destroy_module(mod_radius);
-  printf("destroying mod_cli\n");
-  core_destroy_module(mod_cli);
+  /* core_destroy_module(mod_cli); */
   ////////////////////////////////
 
 
@@ -98,8 +87,10 @@ int main()
   ////////////////////////////////
   /////// Kill the whole beast
   ////////////////////////////////
-  apr_pool_destroy(core_pool);
+  /* apr_pool_destroy(core_pool); */
+  printf("Terminating APR\n");
   apr_terminate();
+  printf("voila! c'est fini!\n");
   ////////////////////////////////
   
   return 0;
