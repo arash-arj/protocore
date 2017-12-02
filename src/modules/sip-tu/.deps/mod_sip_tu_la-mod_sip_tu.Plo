@@ -1,0 +1,398 @@
+mod_sip_tu_la-mod_sip_tu.lo: mod_sip_tu.c /usr/include/stdc-predef.h \
+ ../../../include/core.h /usr/include/stdlib.h /usr/include/features.h \
+ /usr/include/x86_64-linux-gnu/sys/cdefs.h \
+ /usr/include/x86_64-linux-gnu/bits/wordsize.h \
+ /usr/include/x86_64-linux-gnu/gnu/stubs.h \
+ /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
+ /usr/lib/gcc/x86_64-linux-gnu/5/include/stddef.h \
+ /usr/include/x86_64-linux-gnu/bits/waitflags.h \
+ /usr/include/x86_64-linux-gnu/bits/waitstatus.h /usr/include/endian.h \
+ /usr/include/x86_64-linux-gnu/bits/endian.h \
+ /usr/include/x86_64-linux-gnu/bits/byteswap.h \
+ /usr/include/x86_64-linux-gnu/bits/types.h \
+ /usr/include/x86_64-linux-gnu/bits/typesizes.h \
+ /usr/include/x86_64-linux-gnu/bits/byteswap-16.h \
+ /usr/include/x86_64-linux-gnu/sys/types.h /usr/include/time.h \
+ /usr/include/x86_64-linux-gnu/sys/select.h \
+ /usr/include/x86_64-linux-gnu/bits/select.h \
+ /usr/include/x86_64-linux-gnu/bits/sigset.h \
+ /usr/include/x86_64-linux-gnu/bits/time.h \
+ /usr/include/x86_64-linux-gnu/bits/select2.h \
+ /usr/include/x86_64-linux-gnu/sys/sysmacros.h \
+ /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h /usr/include/alloca.h \
+ /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
+ /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
+ /usr/include/x86_64-linux-gnu/bits/stdlib.h /usr/include/stdio.h \
+ /usr/include/libio.h /usr/include/_G_config.h /usr/include/wchar.h \
+ /usr/lib/gcc/x86_64-linux-gnu/5/include/stdarg.h \
+ /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
+ /usr/include/x86_64-linux-gnu/bits/sys_errlist.h \
+ /usr/include/x86_64-linux-gnu/bits/stdio.h \
+ /usr/include/x86_64-linux-gnu/bits/stdio2.h /usr/include/inttypes.h \
+ /usr/lib/gcc/x86_64-linux-gnu/5/include/stdint.h /usr/include/stdint.h \
+ /usr/include/x86_64-linux-gnu/bits/wchar.h /usr/include/unistd.h \
+ /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
+ /usr/include/x86_64-linux-gnu/bits/environments.h \
+ /usr/include/x86_64-linux-gnu/bits/confname.h /usr/include/getopt.h \
+ /usr/include/x86_64-linux-gnu/bits/unistd.h /usr/include/arpa/inet.h \
+ /usr/include/netinet/in.h /usr/include/x86_64-linux-gnu/sys/socket.h \
+ /usr/include/x86_64-linux-gnu/sys/uio.h \
+ /usr/include/x86_64-linux-gnu/bits/uio.h \
+ /usr/include/x86_64-linux-gnu/bits/socket.h \
+ /usr/include/x86_64-linux-gnu/bits/socket_type.h \
+ /usr/include/x86_64-linux-gnu/bits/sockaddr.h \
+ /usr/include/x86_64-linux-gnu/asm/socket.h \
+ /usr/include/asm-generic/socket.h \
+ /usr/include/x86_64-linux-gnu/asm/sockios.h \
+ /usr/include/asm-generic/sockios.h \
+ /usr/include/x86_64-linux-gnu/bits/socket2.h \
+ /usr/include/x86_64-linux-gnu/bits/in.h /usr/include/netdb.h \
+ /usr/include/rpc/netdb.h /usr/include/x86_64-linux-gnu/bits/netdb.h \
+ /usr/include/assert.h /usr/include/string.h /usr/include/xlocale.h \
+ /usr/include/x86_64-linux-gnu/bits/string.h \
+ /usr/include/x86_64-linux-gnu/bits/string2.h \
+ /usr/include/x86_64-linux-gnu/bits/string3.h ../../../include/core_apr.h \
+ ../../../include/core_types.h ../../../include/core_event.h \
+ ../../../include/core_module.h ../../../include/core_trans.h \
+ ../../../include/core_endpoint.h mod_sip_tu.h \
+ ../../../libs/sofia-sip/libsofia-sip-ua/su/sofia-sip/su_wait.h \
+ ../../../libs/sofia-sip/libsofia-sip-ua/su/sofia-sip/su.h \
+ ../../../libs/sofia-sip/libsofia-sip-ua/su/sofia-sip/su_config.h \
+ ../../../libs/sofia-sip/libsofia-sip-ua/su/sofia-sip/su_configure.h \
+ ../../../libs/sofia-sip/libsofia-sip-ua/su/sofia-sip/su_types.h \
+ ../../../libs/sofia-sip/libsofia-sip-ua/su/sofia-sip/su_errno.h \
+ /usr/include/errno.h /usr/include/x86_64-linux-gnu/bits/errno.h \
+ /usr/include/linux/errno.h /usr/include/x86_64-linux-gnu/asm/errno.h \
+ /usr/include/asm-generic/errno.h /usr/include/asm-generic/errno-base.h \
+ /usr/lib/gcc/x86_64-linux-gnu/5/include-fixed/limits.h \
+ /usr/lib/gcc/x86_64-linux-gnu/5/include-fixed/syslimits.h \
+ /usr/include/limits.h /usr/include/x86_64-linux-gnu/bits/posix1_lim.h \
+ /usr/include/x86_64-linux-gnu/bits/local_lim.h \
+ /usr/include/linux/limits.h \
+ /usr/include/x86_64-linux-gnu/bits/posix2_lim.h /usr/include/fcntl.h \
+ /usr/include/x86_64-linux-gnu/bits/fcntl.h \
+ /usr/include/x86_64-linux-gnu/bits/fcntl-linux.h \
+ /usr/include/x86_64-linux-gnu/bits/stat.h \
+ /usr/include/x86_64-linux-gnu/bits/fcntl2.h \
+ /usr/include/x86_64-linux-gnu/sys/ioctl.h \
+ /usr/include/x86_64-linux-gnu/bits/ioctls.h \
+ /usr/include/x86_64-linux-gnu/asm/ioctls.h \
+ /usr/include/asm-generic/ioctls.h /usr/include/linux/ioctl.h \
+ /usr/include/x86_64-linux-gnu/asm/ioctl.h \
+ /usr/include/asm-generic/ioctl.h \
+ /usr/include/x86_64-linux-gnu/bits/ioctl-types.h \
+ /usr/include/x86_64-linux-gnu/sys/ttydefaults.h \
+ ../../../libs/sofia-sip/libsofia-sip-ua/su/sofia-sip/su_addrinfo.h \
+ ../../../libs/sofia-sip/libsofia-sip-ua/su/sofia-sip/su_time.h \
+ /usr/include/x86_64-linux-gnu/sys/poll.h \
+ /usr/include/x86_64-linux-gnu/bits/poll.h \
+ /usr/include/x86_64-linux-gnu/bits/poll2.h \
+ ../../../libs/sofia-sip/libsofia-sip-ua/nta/sofia-sip/nta.h \
+ ../../../libs/sofia-sip/libsofia-sip-ua/sip/sofia-sip/sip.h \
+ ../../../libs/sofia-sip/libsofia-sip-ua/msg/sofia-sip/msg_types.h \
+ ../../../libs/sofia-sip/libsofia-sip-ua/msg/sofia-sip/msg_mime.h \
+ ../../../libs/sofia-sip/libsofia-sip-ua/url/sofia-sip/url.h \
+ ../../../libs/sofia-sip/libsofia-sip-ua/su/sofia-sip/su_alloc.h \
+ ../../../libs/sofia-sip/libsofia-sip-ua/nta/sofia-sip/nta_tag.h \
+ ../../../libs/sofia-sip/libsofia-sip-ua/su/sofia-sip/su_tag.h \
+ ../../../libs/sofia-sip/libsofia-sip-ua/sip/sofia-sip/sip_tag.h \
+ ../../../libs/sofia-sip/libsofia-sip-ua/su/sofia-sip/su_tag_class.h \
+ ../../../libs/sofia-sip/libsofia-sip-ua/url/sofia-sip/url_tag.h \
+ ../../../libs/sofia-sip/libsofia-sip-ua/sip/sofia-sip/sip_status.h \
+ ../../../libs/sofia-sip/libsofia-sip-ua/sdp/sofia-sip/sdp.h \
+ ../../../libs/sofia-sip/libsofia-sip-ua/sip/sofia-sip/sip_header.h \
+ ../../../libs/sofia-sip/libsofia-sip-ua/msg/sofia-sip/msg_header.h \
+ ../../../libs/sofia-sip/libsofia-sip-ua/msg/sofia-sip/msg.h \
+ ../../../libs/sofia-sip/libsofia-sip-ua/msg/sofia-sip/msg_protos.h \
+ ../../../libs/sofia-sip/libsofia-sip-ua/sip/sofia-sip/sip_protos.h \
+ ../../../libs/sofia-sip/libsofia-sip-ua/sip/sofia-sip/sip_hclasses.h \
+ ../../../libs/sofia-sip/libsofia-sip-ua/su/sofia-sip/su_log.h \
+ ../../../libs/sofia-sip/libsofia-sip-ua/su/sofia-sip/su_tagarg.h \
+ ../../../libs/sofia-sip/libsofia-sip-ua/su/sofia-sip/su_tag_io.h \
+ ../../../libs/sofia-sip/libsofia-sip-ua/su/sofia-sip/su_string.h \
+ ../../../libs/sofia-sip/libsofia-sip-ua/tport/sofia-sip/tport_tag.h \
+ ../../../libs/sofia-sip/libsofia-sip-ua/iptsec/sofia-sip/auth_module.h
+
+/usr/include/stdc-predef.h:
+
+../../../include/core.h:
+
+/usr/include/stdlib.h:
+
+/usr/include/features.h:
+
+/usr/include/x86_64-linux-gnu/sys/cdefs.h:
+
+/usr/include/x86_64-linux-gnu/bits/wordsize.h:
+
+/usr/include/x86_64-linux-gnu/gnu/stubs.h:
+
+/usr/include/x86_64-linux-gnu/gnu/stubs-64.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/5/include/stddef.h:
+
+/usr/include/x86_64-linux-gnu/bits/waitflags.h:
+
+/usr/include/x86_64-linux-gnu/bits/waitstatus.h:
+
+/usr/include/endian.h:
+
+/usr/include/x86_64-linux-gnu/bits/endian.h:
+
+/usr/include/x86_64-linux-gnu/bits/byteswap.h:
+
+/usr/include/x86_64-linux-gnu/bits/types.h:
+
+/usr/include/x86_64-linux-gnu/bits/typesizes.h:
+
+/usr/include/x86_64-linux-gnu/bits/byteswap-16.h:
+
+/usr/include/x86_64-linux-gnu/sys/types.h:
+
+/usr/include/time.h:
+
+/usr/include/x86_64-linux-gnu/sys/select.h:
+
+/usr/include/x86_64-linux-gnu/bits/select.h:
+
+/usr/include/x86_64-linux-gnu/bits/sigset.h:
+
+/usr/include/x86_64-linux-gnu/bits/time.h:
+
+/usr/include/x86_64-linux-gnu/bits/select2.h:
+
+/usr/include/x86_64-linux-gnu/sys/sysmacros.h:
+
+/usr/include/x86_64-linux-gnu/bits/pthreadtypes.h:
+
+/usr/include/alloca.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdlib-float.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdlib.h:
+
+/usr/include/stdio.h:
+
+/usr/include/libio.h:
+
+/usr/include/_G_config.h:
+
+/usr/include/wchar.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/5/include/stdarg.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdio_lim.h:
+
+/usr/include/x86_64-linux-gnu/bits/sys_errlist.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdio.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdio2.h:
+
+/usr/include/inttypes.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/5/include/stdint.h:
+
+/usr/include/stdint.h:
+
+/usr/include/x86_64-linux-gnu/bits/wchar.h:
+
+/usr/include/unistd.h:
+
+/usr/include/x86_64-linux-gnu/bits/posix_opt.h:
+
+/usr/include/x86_64-linux-gnu/bits/environments.h:
+
+/usr/include/x86_64-linux-gnu/bits/confname.h:
+
+/usr/include/getopt.h:
+
+/usr/include/x86_64-linux-gnu/bits/unistd.h:
+
+/usr/include/arpa/inet.h:
+
+/usr/include/netinet/in.h:
+
+/usr/include/x86_64-linux-gnu/sys/socket.h:
+
+/usr/include/x86_64-linux-gnu/sys/uio.h:
+
+/usr/include/x86_64-linux-gnu/bits/uio.h:
+
+/usr/include/x86_64-linux-gnu/bits/socket.h:
+
+/usr/include/x86_64-linux-gnu/bits/socket_type.h:
+
+/usr/include/x86_64-linux-gnu/bits/sockaddr.h:
+
+/usr/include/x86_64-linux-gnu/asm/socket.h:
+
+/usr/include/asm-generic/socket.h:
+
+/usr/include/x86_64-linux-gnu/asm/sockios.h:
+
+/usr/include/asm-generic/sockios.h:
+
+/usr/include/x86_64-linux-gnu/bits/socket2.h:
+
+/usr/include/x86_64-linux-gnu/bits/in.h:
+
+/usr/include/netdb.h:
+
+/usr/include/rpc/netdb.h:
+
+/usr/include/x86_64-linux-gnu/bits/netdb.h:
+
+/usr/include/assert.h:
+
+/usr/include/string.h:
+
+/usr/include/xlocale.h:
+
+/usr/include/x86_64-linux-gnu/bits/string.h:
+
+/usr/include/x86_64-linux-gnu/bits/string2.h:
+
+/usr/include/x86_64-linux-gnu/bits/string3.h:
+
+../../../include/core_apr.h:
+
+../../../include/core_types.h:
+
+../../../include/core_event.h:
+
+../../../include/core_module.h:
+
+../../../include/core_trans.h:
+
+../../../include/core_endpoint.h:
+
+mod_sip_tu.h:
+
+../../../libs/sofia-sip/libsofia-sip-ua/su/sofia-sip/su_wait.h:
+
+../../../libs/sofia-sip/libsofia-sip-ua/su/sofia-sip/su.h:
+
+../../../libs/sofia-sip/libsofia-sip-ua/su/sofia-sip/su_config.h:
+
+../../../libs/sofia-sip/libsofia-sip-ua/su/sofia-sip/su_configure.h:
+
+../../../libs/sofia-sip/libsofia-sip-ua/su/sofia-sip/su_types.h:
+
+../../../libs/sofia-sip/libsofia-sip-ua/su/sofia-sip/su_errno.h:
+
+/usr/include/errno.h:
+
+/usr/include/x86_64-linux-gnu/bits/errno.h:
+
+/usr/include/linux/errno.h:
+
+/usr/include/x86_64-linux-gnu/asm/errno.h:
+
+/usr/include/asm-generic/errno.h:
+
+/usr/include/asm-generic/errno-base.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed/limits.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed/syslimits.h:
+
+/usr/include/limits.h:
+
+/usr/include/x86_64-linux-gnu/bits/posix1_lim.h:
+
+/usr/include/x86_64-linux-gnu/bits/local_lim.h:
+
+/usr/include/linux/limits.h:
+
+/usr/include/x86_64-linux-gnu/bits/posix2_lim.h:
+
+/usr/include/fcntl.h:
+
+/usr/include/x86_64-linux-gnu/bits/fcntl.h:
+
+/usr/include/x86_64-linux-gnu/bits/fcntl-linux.h:
+
+/usr/include/x86_64-linux-gnu/bits/stat.h:
+
+/usr/include/x86_64-linux-gnu/bits/fcntl2.h:
+
+/usr/include/x86_64-linux-gnu/sys/ioctl.h:
+
+/usr/include/x86_64-linux-gnu/bits/ioctls.h:
+
+/usr/include/x86_64-linux-gnu/asm/ioctls.h:
+
+/usr/include/asm-generic/ioctls.h:
+
+/usr/include/linux/ioctl.h:
+
+/usr/include/x86_64-linux-gnu/asm/ioctl.h:
+
+/usr/include/asm-generic/ioctl.h:
+
+/usr/include/x86_64-linux-gnu/bits/ioctl-types.h:
+
+/usr/include/x86_64-linux-gnu/sys/ttydefaults.h:
+
+../../../libs/sofia-sip/libsofia-sip-ua/su/sofia-sip/su_addrinfo.h:
+
+../../../libs/sofia-sip/libsofia-sip-ua/su/sofia-sip/su_time.h:
+
+/usr/include/x86_64-linux-gnu/sys/poll.h:
+
+/usr/include/x86_64-linux-gnu/bits/poll.h:
+
+/usr/include/x86_64-linux-gnu/bits/poll2.h:
+
+../../../libs/sofia-sip/libsofia-sip-ua/nta/sofia-sip/nta.h:
+
+../../../libs/sofia-sip/libsofia-sip-ua/sip/sofia-sip/sip.h:
+
+../../../libs/sofia-sip/libsofia-sip-ua/msg/sofia-sip/msg_types.h:
+
+../../../libs/sofia-sip/libsofia-sip-ua/msg/sofia-sip/msg_mime.h:
+
+../../../libs/sofia-sip/libsofia-sip-ua/url/sofia-sip/url.h:
+
+../../../libs/sofia-sip/libsofia-sip-ua/su/sofia-sip/su_alloc.h:
+
+../../../libs/sofia-sip/libsofia-sip-ua/nta/sofia-sip/nta_tag.h:
+
+../../../libs/sofia-sip/libsofia-sip-ua/su/sofia-sip/su_tag.h:
+
+../../../libs/sofia-sip/libsofia-sip-ua/sip/sofia-sip/sip_tag.h:
+
+../../../libs/sofia-sip/libsofia-sip-ua/su/sofia-sip/su_tag_class.h:
+
+../../../libs/sofia-sip/libsofia-sip-ua/url/sofia-sip/url_tag.h:
+
+../../../libs/sofia-sip/libsofia-sip-ua/sip/sofia-sip/sip_status.h:
+
+../../../libs/sofia-sip/libsofia-sip-ua/sdp/sofia-sip/sdp.h:
+
+../../../libs/sofia-sip/libsofia-sip-ua/sip/sofia-sip/sip_header.h:
+
+../../../libs/sofia-sip/libsofia-sip-ua/msg/sofia-sip/msg_header.h:
+
+../../../libs/sofia-sip/libsofia-sip-ua/msg/sofia-sip/msg.h:
+
+../../../libs/sofia-sip/libsofia-sip-ua/msg/sofia-sip/msg_protos.h:
+
+../../../libs/sofia-sip/libsofia-sip-ua/sip/sofia-sip/sip_protos.h:
+
+../../../libs/sofia-sip/libsofia-sip-ua/sip/sofia-sip/sip_hclasses.h:
+
+../../../libs/sofia-sip/libsofia-sip-ua/su/sofia-sip/su_log.h:
+
+../../../libs/sofia-sip/libsofia-sip-ua/su/sofia-sip/su_tagarg.h:
+
+../../../libs/sofia-sip/libsofia-sip-ua/su/sofia-sip/su_tag_io.h:
+
+../../../libs/sofia-sip/libsofia-sip-ua/su/sofia-sip/su_string.h:
+
+../../../libs/sofia-sip/libsofia-sip-ua/tport/sofia-sip/tport_tag.h:
+
+../../../libs/sofia-sip/libsofia-sip-ua/iptsec/sofia-sip/auth_module.h:
